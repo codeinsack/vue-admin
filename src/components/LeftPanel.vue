@@ -55,5 +55,14 @@ export default {
       this.$store.dispatch("logout")
     },
   },
+  created() {
+    if (this.$store.getters.user.role === "admin") {
+      this.items.push({
+        text: "Admin Only",
+        icon: "mdi-flag",
+        link: "admin-only",
+      })
+    }
+  },
 }
 </script>

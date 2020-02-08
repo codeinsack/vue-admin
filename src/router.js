@@ -5,6 +5,7 @@ import Login from "./components/Login.vue"
 import Home from "./components/Home.vue"
 import About from "./components/About.vue"
 import Statistic from "./components/Statistic.vue"
+import AdminOnly from "./components/AdminOnly.vue"
 import store from "./store"
 
 Vue.use(VueRouter)
@@ -40,6 +41,18 @@ const routes = [
     component: Statistic,
     beforeEnter(to, from, next) {
       if (store.state.token) {
+        next()
+      } else {
+        next("/login")
+      }
+    },
+  },
+  {
+    path: "/admin-only",
+    name: "admin-only",
+    component: AdminOnly,
+    beforeEnter(to, from, next) {
+      if (store.state.token && store.state.user.role === "admin") {
         next()
       } else {
         next("/login")
