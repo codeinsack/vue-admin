@@ -4,9 +4,7 @@
       <router-view></router-view>
     </template>
     <template v-else>
-      <v-navigation-drawer app permanent left>
-        <left-panel></left-panel>
-      </v-navigation-drawer>
+      <side-drawer></side-drawer>
       <v-content>
         <v-container fluid>
           <router-view></router-view>
@@ -17,11 +15,11 @@
 </template>
 
 <script>
-import LeftPanel from "./components/LeftPanel.vue"
+import SideDrawer from "./components/SideDrawer.vue"
 
 export default {
   components: {
-    "left-panel": LeftPanel,
+    "side-drawer": SideDrawer,
   },
   created() {
     this.$store.dispatch("tryAutoLogin")
