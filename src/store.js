@@ -60,7 +60,7 @@ export default new Vuex.Store({
       if (!token) {
         return
       }
-      const user = localStorage.getItem("user")
+      const user = JSON.parse(localStorage.getItem("user"))
       commit("authUser", {
         token,
         user,
