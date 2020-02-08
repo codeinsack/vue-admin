@@ -12,6 +12,13 @@ axios.interceptors.request.use((config) => {
   config.headers.Authorization = `Bearer ${token}`
   return config
 })
+axios.interceptors.response.use((response) => response,
+  (error) => {
+    if (error.response.status === 401) {
+      store.dispatch("logout")
+    }
+    return Promise.reject(error)
+  })
 
 Vue.use(Vuetify)
 const vuetify = new Vuetify()

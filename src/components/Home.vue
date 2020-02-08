@@ -10,7 +10,8 @@ import axios from "axios"
 export default {
   created() {
     axios.get("/countries")
-      .then(({ data }) => console.log("data", data))
+      .then((response) => console.log("data", response?.data))
+      .catch((error) => console.log("error", error))
   },
 }
 </script>
