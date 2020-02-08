@@ -1,4 +1,22 @@
 {
+  "users": [
+    {
+      "email": "user@test.io",
+      "password": "$2a$10$pKE2Oy4gh7TikjgYLsc46.vkYkHeSE/v5ZM59KSZyRH3lfFdBxeQm",
+      "firstname": "Oleg",
+      "lastname": "Korneev",
+      "role": "user",
+      "id": 1
+    },
+    {
+      "email": "admin@test.io",
+      "password": "$2a$10$V4fbOGXTlHU0JR/c0Rwxl.Gf4iCQklUc9VkJhRi4MbUJipBUN0f1W",
+      "firstname": "Vasya",
+      "lastname": "Pupkin",
+      "role": "admin",
+      "id": 2
+    }
+  ],
   "countries": [
     {
       "name": "Afghanistan",
