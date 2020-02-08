@@ -71,6 +71,7 @@ export default {
     submit() {
       this.$v.$touch()
       if (!this.$v.$invalid) {
+        this.$router.replace("/")
         console.log("request", {
           name: this.name,
           email: this.email,

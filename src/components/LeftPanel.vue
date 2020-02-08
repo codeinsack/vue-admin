@@ -4,11 +4,19 @@
       <v-list-item-avatar>
         <img src="https://randomuser.me/api/portraits/women/81.jpg">
       </v-list-item-avatar>
-
       <v-list-item-content>
         <v-list-item-title>Jane Smith</v-list-item-title>
         <v-list-item-subtitle>Logged In</v-list-item-subtitle>
       </v-list-item-content>
+      <v-btn
+        small
+        outlined
+        fab
+        color="teal"
+        @click="onExitAppClick"
+      >
+        <v-icon>mdi-exit-to-app</v-icon>
+      </v-btn>
     </v-list-item>
     <v-divider></v-divider>
     <v-list>
@@ -42,5 +50,10 @@ export default {
       { text: "Statistic", icon: "mdi-flag", link: "statistic" },
     ],
   }),
+  methods: {
+    onExitAppClick() {
+      this.$router.replace("/login")
+    },
+  },
 }
 </script>
