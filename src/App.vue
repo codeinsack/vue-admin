@@ -1,15 +1,10 @@
 <template>
   <v-app>
-    <hello-world></hello-world>
+    <router-view></router-view>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue"
-
 export default {
-  components: {
-    "hello-world": HelloWorld,
-  },
 }
 </script>
