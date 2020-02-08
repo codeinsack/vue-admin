@@ -5,8 +5,13 @@
 </template>
 
 <script>
-export default {
+import axios from "axios"
 
+export default {
+  created() {
+    axios.get("/countries")
+      .then(({ data }) => console.log("data", data))
+  },
 }
 </script>
 
