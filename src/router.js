@@ -6,9 +6,11 @@ import Home from "./components/Home.vue"
 import About from "./components/About.vue"
 import Statistic from "./components/Statistic.vue"
 import AdminOnly from "./components/AdminOnly.vue"
-import store from "./store"
 
 Vue.use(VueRouter)
+
+const token = localStorage.getItem("token")
+const user = localStorage.getItem("user")
 
 const routes = [
   {
@@ -16,7 +18,7 @@ const routes = [
     name: "home",
     component: Home,
     beforeEnter(to, from, next) {
-      if (store.state.token) {
+      if (token) {
         next()
       } else {
         next("/login")
@@ -28,7 +30,7 @@ const routes = [
     name: "about",
     component: About,
     beforeEnter(to, from, next) {
-      if (store.state.token) {
+      if (token) {
         next()
       } else {
         next("/login")
@@ -40,7 +42,7 @@ const routes = [
     name: "statistic",
     component: Statistic,
     beforeEnter(to, from, next) {
-      if (store.state.token) {
+      if (token) {
         next()
       } else {
         next("/login")
@@ -52,7 +54,7 @@ const routes = [
     name: "admin-only",
     component: AdminOnly,
     beforeEnter(to, from, next) {
-      if (store.state.token && store.state.user.role === "admin") {
+      if (token && user?.role === "admin") {
         next()
       } else {
         next("/login")

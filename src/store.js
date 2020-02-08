@@ -13,6 +13,7 @@ export default new Vuex.Store({
   },
   mutations: {
     authUser(state, userData) {
+      console.log("authUser")
       state.token = userData.token
       state.user = userData.user
     },
