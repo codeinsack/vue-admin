@@ -23,5 +23,8 @@ export default {
   components: {
     "left-panel": LeftPanel,
   },
+  created() {
+    this.$store.dispatch("tryAutoLogin")
+  },
 }
 </script>

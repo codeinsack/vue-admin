@@ -16,5 +16,7 @@ module.exports = {
     semi: ["error", "never"],
     quotes: ["error", "double"],
     "import/prefer-default-export": "off",
+    "object-curly-newline": "off",
+    "no-param-reassign": "off",
   },
 }

@@ -52,7 +52,7 @@ export default {
   }),
   methods: {
     onExitAppClick() {
-      this.$router.replace("/login")
+      this.$store.dispatch("logout")
     },
   },
 }

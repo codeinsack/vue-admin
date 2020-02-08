@@ -4,14 +4,6 @@
       <v-col cols="4">
         <form>
           <v-text-field
-            v-model="name"
-            :error-messages="nameErrors"
-            label="Name"
-            required
-            @input="$v.name.$touch()"
-            @blur="$v.name.$touch()"
-          ></v-text-field>
-          <v-text-field
             v-model="email"
             :error-messages="emailErrors"
             label="E-mail"
@@ -19,6 +11,16 @@
             @input="$v.email.$touch()"
             @blur="$v.email.$touch()"
           ></v-text-field>
+          <v-text-field
+            type="password"
+            v-model="password"
+            :error-messages="passwordErrors"
+            label="Password"
+            required
+            @input="$v.password.$touch()"
+            @blur="$v.password.$touch()"
+          ></v-text-field>
+          <p style="color: red">{{ serverError }}</p>
           <v-btn @click="submit">submit</v-btn>
         </form>
       </v-col>
@@ -28,32 +30,22 @@
 
 <script>
 import { validationMixin } from "vuelidate"
-import { required, maxLength, email } from "vuelidate/lib/validators"
+import { required, email } from "vuelidate/lib/validators"
 
 export default {
   mixins: [validationMixin],
   validations: {
-    name: { required, maxLength: maxLength(10) },
     email: { required, email },
+    password: { required },
   },
   data() {
     return {
-      name: "",
       email: "",
+      password: "",
+      serverError: "",
     }
   },
   computed: {
-    nameErrors() {
-      const errors = []
-      if (!this.$v.name.$dirty) return errors
-      if (!this.$v.name.maxLength) {
-        errors.push("Name must be at most 10 characters long")
-      }
-      if (!this.$v.name.required) {
-        errors.push("Name is required.")
-      }
-      return errors
-    },
     emailErrors() {
       const errors = []
       if (!this.$v.email.$dirty) return errors
@@ -65,17 +57,34 @@ export default {
       }
       return errors
     },
+    passwordErrors() {
+      const errors = []
+      if (!this.$v.password.$dirty) return errors
+      if (!this.$v.password.required) {
+        errors.push("Password is required.")
+      }
+      return errors
+    },
   },
 
   methods: {
     submit() {
       this.$v.$touch()
       if (!this.$v.$invalid) {
-        this.$router.replace("/")
-        console.log("request", {
-          name: this.name,
+        const authData = {
           email: this.email,
-        })
+          password: this.password,
+        }
+        this.$store.dispatch("login", authData)
+        // axios.post("/login", user)
+        //   .then(({ data }) => {
+        //     this.serverError = ""
+        //     console.log("token", data.accessToken)
+        //     // this.$router.replace("/")
+        //   })
+        //   .catch((error) => {
+        //     this.serverError = error.response.data
+        //   })
       }
     },
   },
